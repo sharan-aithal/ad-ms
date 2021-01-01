@@ -14,7 +14,7 @@ passport.use('local', new LocalStrategy({
     });
 
     async function loginAttempt() {
-        const client = await pool.connect()
+        const client = await pool.connect().catch(e => { console.log('connect error: ', e)});
         try {
             await client.query('BEGIN')
             await JSON.stringify(client.query('SELECT "name", "email", "password" FROM "user" WHERE "email"=$1', [email], function (err, result) {

@@ -11,7 +11,7 @@ const pool = new Pool({
 if (!pool) {
     console.log('Connection error...');
 } else {
-    console.log('Connected to postgresql to database:', pool.options.database);
+    console.log('Connected to postgres database:', pool.options.database);
 }
 
 module.exports = pool;

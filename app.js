@@ -9,8 +9,10 @@ const flash = require('connect-flash');
 const passport = require('passport');
 // import database connection
 const pool = require("./config/database");
+const { ensureAuthenticated } = require('./config/auth')
 
 var indexRouter = require('./routes/index');
+var accountRouter = require('./routes/account');
 var usersRouter = require('./routes/users');
 var dashboardRouter = require('./routes/dashboard');
 
@@ -21,7 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // connect to database when app starts
-app.set(pool.connect())
+app.set(pool.connect().catch(e => { throw e }));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -50,7 +52,9 @@ app.use((req, res, next) => {
 });
  */
 
+app.use(ensureAuthenticated)
 app.use('/', indexRouter);
+app.use('/account', accountRouter);
 app.use('/users', usersRouter);
 app.use('/dashboard', dashboardRouter);
 
