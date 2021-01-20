@@ -3,7 +3,7 @@ module.exports = {
         if(req.isAuthenticated()) {
             return next();
         }
-        if (req.url === '/login' || req.url === '/') {
+        if (req.url === '/login' || req.url === '/' || req.url === '/register') {
             return next()
         }
         req.flash('error_msg' , 'please login to view this resource');
