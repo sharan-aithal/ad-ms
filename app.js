@@ -13,8 +13,8 @@ const { ensureAuthenticated } = require('./config/auth')
 
 var indexRouter = require('./routes/index');
 var accountRouter = require('./routes/account');
-var usersRouter = require('./routes/users');
-var dashboardRouter = require('./routes/dashboard');
+var campaignRouter = require('./routes/campaign');
+var dashboardRouter = require('./routes/campaign');
 
 var app = express();
 
@@ -55,7 +55,7 @@ app.use((req, res, next) => {
 app.use(ensureAuthenticated)
 app.use('/', indexRouter);
 app.use('/account', accountRouter);
-app.use('/users', usersRouter);
+app.use('/campaign', campaignRouter);
 app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to error handler
