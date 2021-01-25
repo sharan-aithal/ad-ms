@@ -1,0 +1,48 @@
+<html>
+<% include ../account/navbar.ejs %>
+<body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Order</li>
+    </ol>
+</nav>
+<div class="container my-5 py-5">
+    <h4 class="h4 text-center">Order List</h4>
+    <div class="container">
+    <table class="table table-hover table-striped table-bordered table-responsive">
+        <caption>Found <%= rowCount %> orders</caption>
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Order ID</th>
+            <th scope="col">AD Type</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Payable Amount</th>
+            <th scope="col">Status</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%
+        console.log('Listing Orders ')
+        if (table.length > 0) {
+            let i = 1;
+                for (let key in table) {
+        %>
+            <tr>
+                <td><%= i++ %></td>
+                <td><%= table[key].order_id %></td>
+                <td><%= table[key].order_type_id %></td>
+                <td><%= table[key].order_time %></td>
+                <td><%= table[key].order_amount %></td>
+                <td><%= table[key].order_status %></td>
+                <td><a href="/order/details/<%= table[key].order_id %>" class="btn btn-secondary">Details</a></td>
+            </tr>
+        <% } } %>
+        </tbody>
+    </table>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>
