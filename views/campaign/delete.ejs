@@ -1,0 +1,37 @@
+<html>
+<% include ../account/navbar.ejs %>
+<body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/campaign">Campaign</a></li>
+        <li class="breadcrumb-item active" aria-current="page">New Campaign</li>
+    </ol>
+</nav>
+
+<div class="container my-5">
+    <h3 class="h3 text-center">Delete Campaign</h3>
+    <hr>
+    <div class="container">
+        <form action="/campaign/delete" method="post">
+            <div class="form-group row">
+                <label for="exampleFormControlSelect1">Select Advertisement Campaign Id to be deleted</label>
+                <select name="cmpType" class="form-control" id="exampleFormControlSelect1">
+                    <% if (cmpType) { %>
+                        <% for (let key in cmpType) { %>
+                            <option value="<%= cmpType[key]['adv_id'] %>"><%= cmpType[key]['adv_id'] %></option>
+                    <% } } %>
+                </select>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-danger">Delete Campaign</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<% include ../footer.ejs %>
+</body>
+</html>

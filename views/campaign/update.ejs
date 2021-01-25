@@ -1,0 +1,27 @@
+<h1>Update campaign</h1>
+
+<div>
+    <form action="/campaign/update" method="post">
+        <label>
+            <span>Enter Title:</span>
+            <input name="cmpTitle" type="text" value="<%= cmpTitle %>" required>
+        </label>
+        <br>
+        <label>
+            <span>Enter Description</span>
+            <input name="cmpDesc" type="text" value="<%= cmpDesc %>" required>
+        </label>
+        <br>
+        <label>
+            <span>Select advertisement type</span>
+            <select name="cmpType">
+                <% if (cmpType) { %>
+                    <% for (let type of cmpType) {%>
+                        <option value="<%= type.type_id %>"><%= type.type_name %></option>
+                <% } } %>
+            </select>
+        </label>
+        <br>
+        <input type="submit" value="submit">
+    </form>
+</div>
