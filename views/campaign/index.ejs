@@ -1,0 +1,33 @@
+<html>
+<% include ../account/navbar.ejs %>
+<body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Campaign</li>
+    </ol>
+</nav>
+
+<div class="container my-5">
+    <h3 class="h3 text-center">Campaign Home</h3>
+    <hr>
+    <div class="container">
+        <div class="py-2 row">
+            <a href="/campaign/create" class="btn btn-primary">Create campaign</a>
+            <p class="col my-2 px-2">Start creating advertise campaigns here. Reach your customers quickly.</p>
+        </div>
+        <div class="py-2 row">
+            <a href="/campaign/update" class="btn btn-primary">Update campaign</a>
+            <p class="col my-2 px-2">Any changes needed or even more medium required update your existing campaign here.</p>
+        </div>
+        <div class="py-2 row">
+            <a href="/campaign/delete" class="btn btn-primary">Delete campaign</a>
+            <p class="col my-2 px-2">Not ready, manage your advertising easily.</p>
+        </div>
+    </div>
+</div>
+<% include list.ejs %>
+<% include ../footer.ejs %>
+</body>
+</html>
+
