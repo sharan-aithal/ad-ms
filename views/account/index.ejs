@@ -1,0 +1,71 @@
+<html>
+<% include navbar.ejs %>
+<body>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Account</li>
+    </ol>
+</nav>
+<div class="container my-5 py-5">
+    <div class="row profile">
+        <div class="col-md-6">
+            <div class="profile-sidebar">
+                <!-- SIDEBAR USERPIC -->
+                <div class="figure-img profile-userpic">
+                    <img src="/images/profile.png" class="profile-userpic" alt="">
+                </div>
+                <!-- END SIDEBAR USERPIC -->
+                <!-- SIDEBAR USER TITLE -->
+                <div class="profile-usertitle">
+                    <div class="profile-usertitle-name">
+                        <%= userName %>
+                    </div>
+                    <div class="profile-usertitle-job">
+                        <%= userEmail %>
+                    </div>
+                </div>
+                <!-- END SIDEBAR USER TITLE -->
+                <!-- SIDEBAR BUTTONS -->
+                <div class="profile-userbuttons">
+                    <a href="/campaign" role="button" class="btn btn-success btn-sm">Open Campaign</a>
+                </div>
+                <!-- END SIDEBAR BUTTONS -->
+                <!-- SIDEBAR MENU -->
+                <div class="profile-usermenu">
+                    <ul class="nav list-group">
+                        <li class="active list-group-item li-active">
+                            <a href="#">
+                                <i class="glyphicon fa fa-home"></i>
+                                Overview
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <i class="glyphicon fa fa-user"></i>
+                                Account Settings
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="/order">
+                                <i class="glyphicon fa fa-check"></i>
+                                Orders
+                            </a>
+                        </li>
+                        <li class="list-group-item">
+                            <a href="#">
+                                <i class="glyphicon fa fa-question"></i>
+                                Help
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- END MENU -->
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ../footer.ejs %>
+</body>
+</html>
