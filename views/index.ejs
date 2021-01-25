@@ -1,11 +1,25 @@
-<!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
+<% include body-header.ejs %>
+<body>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+<div class="container my-5">
+  <div class="container home-page home-page-bg-img">
+    <div class="p-5 h2"><p class="text-center">Skip the middleman with our do-it-yourself platform and put your message on Google, Facebook, Instagram, YouTube, Newspapers and more.
+      </p>
+    </div>
+    <div class="container text-center">
+      <a class="btn btn-primary" href="/register">Get Started</a>
+    </div>
+    <div class="container my-5 bg-light">
+      <div class="h3 text-success text-center font-weight-bold py-2">
+        Manage it all in one place
+      </div>
+      <div class="align-content-center py-2 text-center home-desc h5">
+        Use a single dashboard to manage orders, and payments anywhere you go. Gain the insights and knowledge you need to market your business.
+      </div>
+    </div>
+  </div>
+</div>
+  <% include footer.ejs %>
   </body>
 </html>
