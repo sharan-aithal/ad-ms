@@ -1,0 +1,41 @@
+<% include body-header.ejs %>
+<div class="container py-5">
+    <div class="pr-5 pl-5 h-100 w-auto">
+        <div class="card">
+            <article class="card-body">
+                <h4 class="card-title text-center mb-4 mt-1"><%= title %></h4>
+                <hr>
+                <% if ( expressFlash.length > 0 ) { %>
+                    <p class="text-danger text-center"><%= expressFlash %> </p>
+                <% } %>
+                <form action="/login" method="post">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-at"></i> </span>
+                            </div>
+                            <input class="form-control" name="email" type="email" value="<%= email %>" placeholder="Enter Email">
+                        </div> <!-- input-group.// -->
+                    </div> <!-- form-group// -->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                            </div>
+                            <input class="form-control" name="password" type="password" value="<%= password %>" placeholder="******">
+                        </div> <!-- input-group.// -->
+                    </div> <!-- form-group// -->
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Login </button>
+                    </div> <!-- form-group// -->
+                    <p class="text-center">
+                        Don't have account?
+                        <a href="/register" class="btn btn-outline-primary">Register Here</a>
+                    </p>
+                </form>
+            </article>
+        </div> <!-- card.// -->
+    </div> <!-- col.// -->
+</div>
+
+<% include footer.ejs %>
