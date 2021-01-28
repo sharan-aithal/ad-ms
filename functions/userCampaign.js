@@ -50,6 +50,9 @@ module.exports.createCampaign = async function createCampaign(req, res, next) {
                         if (!err) {
                             console.log('[Added] ad:', result.rowCount, 'row inserted');
 
+                            // generate order_id and order_time
+                            let order_id = (Date.now() >> 2) % 450000;
+                            let order_time = new Date().toISOString().slice(0, 19).replace('T', ' ');
                             // set order amount
                             let order_amount = 5000;
                             if (adv_type === 'WEB') {
@@ -60,8 +63,6 @@ module.exports.createCampaign = async function createCampaign(req, res, next) {
                                 order_amount = 8500;
                             }
 
-                            let order_id = (Date.now() >> 2) % 450000;
-                            let order_time = new Date().toISOString().slice(0, 19).replace('T', ' ');
                             // insert to orders
                             pool.query('insert into orders values ($1, $2, (select ad_id from ads where ad_user=($7) order by ad_id desc limit 1), $3, $4, $5, $6)', [order_id, req.user[0].email, adv_type, order_time, order_amount, 'pending', req.user[0]], (err, result) => {
                                 if (!err) {
