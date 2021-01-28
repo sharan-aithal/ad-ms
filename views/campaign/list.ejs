@@ -11,12 +11,13 @@
                 <th scope="col">Advertisement Title</th>
                 <th scope="col">Advertisement Description</th>
                 <th scope="col">Ad Type</th>
+                <!--- This may be added in the future
                 <th scope="col">Action</th>
+                --->
             </tr>
             </thead>
             <tbody>
             <%
-            console.log('Listing Orders ')
             if (listData.length > 0) {
                 let i = 1;
                     for (let key in listData) {
@@ -26,9 +27,17 @@
                     <td><%= listData[key].adv_id %></td>
                     <td><%= listData[key].adv_user %></td>
                     <td><%= listData[key].adv_title %></td>
-                    <td><%= listData[key].adv_desc %></td>
+                    <%
+                        var desc = listData[key].adv_desc;
+                        if (desc.length > 200) {
+                            desc = desc.slice(0, 200) + '...';
+                        }
+                    %>
+                    <td><%= desc %></td>
                     <td><%= listData[key].adv_type %></td>
+                    <!--- This may be added in the future
                     <td><a href="/campaign/details/<%= listData[key].adv_id %>" class="btn btn-secondary">Details</a></td>
+                    --->
                 </tr>
             <% } } %>
             </tbody>
