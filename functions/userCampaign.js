@@ -22,7 +22,7 @@ module.exports.getList = async function getList(req, res, next) {
         await pool.query('select * from "ad_content" where adv_user=($1)', [req.user[0].email], function(err, result) {
             if(err){console.log('err', err);}
             else {
-                console.log(result.rows) // shows types of ads
+                // list of ads
                 if (result.rows) {
                     res.render('campaign', {listData: result.rows})
                 } else {
@@ -44,6 +44,39 @@ module.exports.createCampaign = async function createCampaign(req, res, next) {
         var adv_type = req.body.cmpType;
         await pool.query('insert into ad_content values ($1, $2, $3, $4, $5)',[adv_id, ad_user, title, desc, adv_type], (err, result) => {
             if (!err) {
+                try {
+                    // insert to ads
+                    pool.query('insert into ads (ad_type, ad_company, ad_user, ad_location) values ($1, (select c_email from user_company where user_company.c_user=($2) limit 1), $2, $3)', [adv_type, ad_user, 'national'], (err, result) => {
+                        if (!err) {
+                            console.log('[Added] ad:', result.rowCount, 'row inserted');
+
+                            // set order amount
+                            let order_amount = 5000;
+                            if (adv_type === 'WEB') {
+                                order_amount = 10500;
+                            } else if (adv_type === 'APP') {
+                                order_amount = 12000;
+                            } else if (adv_type === 'PRINT') {
+                                order_amount = 8500;
+                            }
+
+                            let order_id = (Date.now() >> 2) % 450000;
+                            let order_time = new Date().toISOString().slice(0, 19).replace('T', ' ');
+                            // insert to orders
+                            pool.query('insert into orders values ($1, $2, (select ad_id from ads where ad_user=($7) order by ad_id desc limit 1), $3, $4, $5, $6)', [order_id, req.user[0].email, adv_type, order_time, order_amount, 'pending', req.user[0]], (err, result) => {
+                                if (!err) {
+                                    console.log('[Added] order:', result.rowCount, 'row inserted');
+                                } else {
+                                    console.log('Unable to add "order"', err)
+                                }
+                            });
+                        } else {
+                            console.log('Unable to add "ad" for ', err)
+                        }
+                    });
+                } catch (e) {
+                    console.log('error at insert ads :', e)
+                }
                 req.user.push({adv_id: adv_id});
                 console.log(req.user, adv_id)
                 console.log('create camp ',result.rows)
