@@ -55,7 +55,7 @@ router.get('/company', function (req, res, next) {
         if (!r.rows[0].company_reg) {
             // load info
             try {
-                await pool.query('select * from "company_user" where c_user=($1)',[email], (err, result) => {
+                await pool.query('select * from "user_company" where c_user=($1)',[email], (err, result) => {
                     if (!err) {
                         var row = result.rows[0];
                         console.log('row', row)
